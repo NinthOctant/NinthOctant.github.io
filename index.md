@@ -1,4 +1,4 @@
-## Quantum Field Theory
+## 量子场论 Quantum Field Theory
 ### Prerequisites
 #### Group Theory
 * Group theory is extremely important in QFT.
