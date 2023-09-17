@@ -6,7 +6,11 @@
 * 标准模型中，传递夸克间强相互作用的规范玻色子称为胶子(gluon)，传递电磁相互作用的规范玻色子称为是光子(photon)，传递弱相互作用的规范玻色子是 $W^{\pm}$和 $Z^{0}$玻色子。此外，还存在Higgs玻色子，与电弱规范对称性的自发破缺及基本粒子的质量起源有关
 #### 1.1量子场论的必要性
 * 量子场论结合了量子力学、相对性原理和场(field)的概念
-* Klein Gordon方程 $-\hbar^{2}\frac{\partial^{2}}{\partial t^{2} }\psi(textbf{x},t)$
+* 由Klein Gordon方程  
+  $-\hbar^{2}\frac{\partial^{2}}{\partial t^{2} }\psi(\textbf{x},t)=(-\hbar^{2}c^{2}\nabla^{2}+m^{2}c^{4})\psi(\textbf{x},t)$  
+  给出的自由粒子能量是 $E=\pm\sqrt{\textbf{p}^{2}c^{2}+m^{2}c^{4}}$，存在负能量困难。概率密度定义为  
+  $\rho=\frac{i\hbar}{2mc^{2}}(\hat{\psi}^*\frac{\partial\psi}{\partial t}-\frac{\partial\hat{\psi}^*}{\partial t}\psi)$
+  存在负概率困难。Dirac方程解决了该问题，但只能描述自旋为1/2的粒子，而不能表述整数自旋的粒子。
 #### 自然单位制
 #### Lorentz变换和Lorentz群
 #### Lorentz矢量
