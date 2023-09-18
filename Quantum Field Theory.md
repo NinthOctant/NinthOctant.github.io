@@ -16,7 +16,8 @@
 #### 1.2自然单位制
 * 在自然单位制中，速度没有量纲(dimension)；长度量纲与时间量纲相同，是能量量纲的倒数；能量、质量和动量具有相同的量纲。可以将能量单位与电子伏特(eV)视作上述有量纲物理量的基本单位
 #### 1.3Lorentz变换和Lorentz群
-* Lorentz变换的形式 $t^{'}=\gamma(t-\beta x)$
+* Lorentz变换的形式 $t'=\gamma(t-\beta x)$, $x'=\gamma(x-\beta t)$, $y'=y$, $z'=z$, 其中Lorentz因子 $\gamma=(1-\beta^{2})^{-1/2}$
+* $t^{2}-x^{2}-y^{2}-z^{2}$是一个Lorentz不变量，在不同惯性系中值不变
 #### Lorentz矢量
 #### Lorentz张量
 #### 作用量原理
