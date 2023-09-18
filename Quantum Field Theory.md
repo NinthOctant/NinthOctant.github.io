@@ -18,7 +18,8 @@
 #### 1.3Lorentz变换和Lorentz群
 * Lorentz变换的形式 $t'=\gamma(t-\beta x)$, $x'=\gamma(x-\beta t)$, $y'=y$, $z'=z$, 其中Lorentz因子 $\gamma=(1-\beta^{2})^{-1/2}$
 * $t^{2}-x^{2}-y^{2}-z^{2}$是一个Lorentz不变量，在不同惯性系中值不变
-* Minkowski度规(metric) $g_{\mu\nu}=g_{\nu\mu}=diag(1,-1,-1,-1)$,使用Einstein求和预定，将内积化为求和式 $x^{2}=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-(x^{3})^{2}= \sum_{\mu,\nu=0}^{3}g_{\mu\nu}x^{\mu}x^{\nu}=g_{\mu\nu}x^{\mu}x^{\nu}$
+* Minkowski度规(metric) $g_{\mu\nu}=g_{\nu\mu}=diag(1,-1,-1,-1)$,使用Einstein求和预定，将内积化为求和式
+  $x^{2}=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-   (x^{3})^{2}= \sum_{\mu,\nu=0}^{3}g_{\mu\nu}x^{\mu}x^{\nu}=g_{\mu\nu}x^{\mu}x^{\nu}$
 #### Lorentz矢量
 #### Lorentz张量
 #### 作用量原理
