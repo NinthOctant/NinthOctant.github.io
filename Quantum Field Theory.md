@@ -18,6 +18,8 @@
 #### 1.3Lorentz变换和Lorentz群
 * Lorentz变换的形式 $t'=\gamma(t-\beta x)$, $x'=\gamma(x-\beta t)$, $y'=y$, $z'=z$, 其中Lorentz因子 $\gamma=(1-\beta^{2})^{-1/2}$
 * $t^{2}-x^{2}-y^{2}-z^{2}$是一个Lorentz不变量，在不同惯性系中值不变
+* Minkowski度规(metric)
+* $g_{\mu\nu}=g_{\nu\mu}=\begin{pmatrix} 1 & 2 & 3\\ a & b & c \end{pmatrix}$
 #### Lorentz矢量
 #### Lorentz张量
 #### 作用量原理
