@@ -18,7 +18,7 @@
 #### 1.3Lorentz变换和Lorentz群
 * Lorentz变换的形式 $t'=\gamma(t-\beta x)$, $x'=\gamma(x-\beta t)$, $y'=y$, $z'=z$, 其中Lorentz因子 $\gamma=(1-\beta^{2})^{-1/2}$
 * $t^{2}-x^{2}-y^{2}-z^{2}$是一个Lorentz不变量，在不同惯性系中值不变
-* Minkowski度规(metric) $$g_{\mu\nu}=g_{\nu\mu}=diag(1,-1,-1,-1)$$,使用Einstein求和约定，将内积化为求和式
+* Minkowski度规(metric) $$g_{\mu\nu}=g_{\nu\mu}=\rm diag(1,-1,-1,-1)$$,使用Einstein求和约定，将内积化为求和式
   $x^{2}=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-   (x^{3})^{2}= \sum_{\mu,\nu=0}^{3}g_{\mu\nu}x^{\mu}x^{\nu}=g_{\mu\nu}x^{\mu}x^{\nu}$
 * 逆变矢量与协变矢量一一对应，是对同一Lorentz矢量的两种等价描述
 * 保度规条件 $g_{\mu\nu}\Lambda^{\mu}_ \alpha\Lambda^{\nu}_ {\beta}=g_{\alpha\beta}$
