@@ -1,5 +1,5 @@
 ## 量子场论 Quantum Field Theory
-该笔记经由中山大学余钊焕老师的《量子场论讲义》整理而来，仅记录重要结论或定理，以帮助记忆和建立物理图像，不记录推导过程
+
 ### 预备知识 
 * 基本粒子指尚未发现内部结构的粒子
 * 夸克的种类称为味(flavor)，六种味道的夸克d、u、s、c、b、t质量不同。而每一味夸克又具有三种颜色(color)
@@ -22,6 +22,7 @@
   $x^{2}=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-   (x^{3})^{2}= \sum_{\mu,\nu=0}^{3}g_{\mu\nu}x^{\mu}x^{\nu}=g_{\mu\nu}x^{\mu}x^{\nu}$
 * 逆变矢量与协变矢量一一对应，是对同一Lorentz矢量的两种等价描述
 * 保度规条件 $g_{\mu\nu}\Lambda^{\mu}_ \alpha\Lambda^{\nu}_ {\beta}=g_{\alpha\beta}$
+* 可以用 $\\rm det(\Lambda)$的值给Lorentz变换分类。 $\\rm det(\Lambda)=1$的变换称为固有(proper)Lorentz变换，$\\rm det(\Lambda)=-1$的变换称为非固有(improper)Lorentz变换； $\Lambda^{0}_{0}\geq1的变换称为保时向(orthochronous)Lorentz变换，$\Lambda^{0}_{0}\leq1$的变换称为保时向(antichronous)Lorentz变换
 
 
 #### Lorentz矢量
