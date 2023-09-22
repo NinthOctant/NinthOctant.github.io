@@ -22,7 +22,7 @@
   $x^{2}=(x^{0})^{2}-(x^{1})^{2}-(x^{2})^{2}-   (x^{3})^{2}= \sum_{\mu,\nu=0}^{3}g_{\mu\nu}x^{\mu}x^{\nu}=g_{\mu\nu}x^{\mu}x^{\nu}$
 * 逆变矢量与协变矢量一一对应，是对同一Lorentz矢量的两种等价描述
 * 保度规条件 $g_{\mu\nu}\Lambda^{\mu}_ \alpha\Lambda^{\nu}_ {\beta}=g_{\alpha\beta}$
-* 可以用 $\\rm det(\Lambda)$的值给Lorentz变换分类。 $\rm det(\Lambda)=1$的变换称为固有(proper)Lorentz变换， $\rm  det(\Lambda)=-1$的变换称为非固有(improper)Lorentz变换； $\Lambda^{0}_{0}\geq 1的变换称为保时向(orthochronous)Lorentz变换，$\Lambda^{0}_{0}\leq 1$的变换称为反时向(antichronous)Lorentz变换
+* 可以用 $\\rm det(\Lambda)$的值给Lorentz变换分类。 $\rm det(\Lambda)=1$的变换称为固有(proper)Lorentz变换， $\rm  det(\Lambda)=-1$的变换称为非固有(improper)Lorentz变换； $\Lambda^{0}_{0}\geq1$的变换称为保时向(orthochronous)Lorentz变换，$\Lambda^{0}_{0}\leq1$的变换称为反时向(antichronous)Lorentz变换
 
 
 #### Lorentz矢量
