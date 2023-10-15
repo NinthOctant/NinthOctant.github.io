@@ -24,7 +24,9 @@
 * 保度规条件 $g_{\mu\nu}\Lambda^{\mu}_ \alpha\Lambda^{\nu}_ {\beta}=g_{\alpha\beta}$
 * 可以用 $\\rm det(\Lambda)$的值给Lorentz变换分类。 $\rm det(\Lambda)=1$的变换称为固有(proper)Lorentz变换， $\rm  det(\Lambda)=-1$的变换称为非固有(improper)Lorentz变换； $\Lambda^0_0\geq1$的变换称为保时向(orthochronous)Lorentz变换， 
  $\Lambda^0_0\leq-1$的变换称为反时向(antichronous)Lorentz变换
-
+* 在数学上，对称性由群论描述。对称变换的集合称为群(group)，群元素具有乘法，元素的乘积就是两次对称变换相机作用，满足封闭性、结合律、存在恒元 $e$，存在逆元 $g^{-1}$四个条件
+* 满足交换律的群称为Abel群，否在称为非Abel群
+* 满足 $O^{T}O=OO^{T}=1$的实方阵称为实正交矩阵(real orthogonal matrix)，所有N阶实正交矩阵构成正交群 $O(N)$。由 $\rm det(O)=1$的实正交矩阵 $O$构成的群称为特殊正交群$SO(N)$。且显然有 $SO(N)\textless O(N)$。非Abel群 $SO(3)$描述三维空间中的所有旋转变换，称为空间旋转群。Abel群 $SO(2)$描述二维平面上的所有旋转变换。因而 $SO(2)\textless SO(3)$
 
 #### Lorentz矢量
 #### Lorentz张量
