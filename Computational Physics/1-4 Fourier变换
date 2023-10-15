@@ -1,0 +1,23 @@
+import numpy as np
+
+def DFT(x):
+    x=np.asarray(x,dtype=float)
+    N=x.shape[0]#返回数组的元素个数
+    n=np.arange(N) #numpy.arrange函数的作用是生成带起点和终点的特定步长的排列
+    k=n.reshape((N,1))#numpy.arange(n).reshape(a, b)依次生成n个自然数，并且以a行b列的数组形式显示
+    M=np.exp(-2j*np.pi*k*n/N)
+    return np.dot(M,x)
+#给定数据
+data1=np.array([13,17,19,23])
+data2=np.array([4-1j,2+1j,2+1j,-1j,2-1j,4+1j,4+1j,1j])
+
+#也可以使用numpy库中的fft模块计算Fourier变换，其中计算一维Fourier变换需要用到的函数为numpy.fft.fft
+ft1=np.fft.fft(data1)
+ft2=np.fft.fft(data2)
+
+#输出结果
+print('使用自编程序所得data1的离散Fourier变换为：',DFT(data1))
+print('使用自编程序所得data2的离散Fourier变换为：',DFT(data2))
+
+print('data1的离散Fourier变换为：',ft1)
+print('data2的离散Fourier变换为：',ft2)
