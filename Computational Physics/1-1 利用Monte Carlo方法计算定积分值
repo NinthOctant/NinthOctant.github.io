@@ -1,1 +1,28 @@
+import numpy as np
 
+#定义函数
+def f(x):
+    return x**2
+
+#给定初始N值
+N=40
+
+#定义积分函数
+def integration_simulation(N):
+    sum = 0
+    x = np.random.rand(1, N)#生成N个区间[0,1)#的随机数,产生数组
+    x1 = x[0]
+    for i in x1:
+        sum=sum+f(i)
+    sum=sum/N
+    return sum
+
+#迭代，减小误差
+res=0
+iteration=0
+while abs(res - (1 / 3)) > 1e-4:
+    N*=2
+    res=integration_simulation(N)
+    iteration+=1
+print('定积分的值为：',res)
+print('总迭代次数为：',iteration,'。其中共有',N,'个点被采用。','误差为',abs(res - (1 / 3)))
