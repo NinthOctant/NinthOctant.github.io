@@ -1,0 +1,45 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.interpolate import lagrange, interp1d, BarycentricInterpolator,CubicSpline
+
+# 定义函数 f(x)
+def f(x):
+    return np.tan(np.cos((np.sqrt(3) + np.sin(2 * x)) / (3 + 4 * x**2)))
+# 选择插值节点
+n_values = [3, 5, 7, 9, 11]
+x_range = np.linspace(-5, 5, 1000) # 用于绘制插值函数的范围
+for n in n_values:
+    x_nodes = np.linspace(-5, 5, n)
+    y_nodes = f(x_nodes)
+
+# 多项式插值
+poly_interp = lagrange(x_nodes, y_nodes)
+y_poly = poly_interp(x_range)
+
+# 牛顿插值 (使用线性插值)
+newton_interp = interp1d(x_nodes, y_nodes, kind='linear') # 使用牛顿插值
+y_newton = newton_interp(x_range)
+
+# 内维尔插值
+barycentric_interp = BarycentricInterpolator(x_nodes, y_nodes)
+y_barycentric = barycentric_interp(x_range)
+
+# 三次样条插值
+spline_interp = CubicSpline(x_nodes, y_nodes)
+y_spline = spline_interp(x_range)
+
+# 绘制原函数、插值函数和插值节点的对比
+plt.figure(figsize=(10, 6))
+plt.plot(x_range, f(x_range), label='Original Function', color='black')
+plt.plot(x_range, y_poly, label='Polynomial Interpolation', linestyle='--',
+color='red')
+plt.plot(x_range, y_newton, label='Newton Interpolation', linestyle='--',
+color='green')
+plt.plot(x_range, y_barycentric, label='Neville Interpolation',
+linestyle='--', color='blue')
+plt.plot(x_range, y_spline, label='Cubic Spline Interpolation', linestyle='--', color='purple')
+plt.scatter(x_nodes, y_nodes, color='red', label='Interpolation Nodes')
+plt.title(f'Interpolation Comparison (n={n})')
+plt.legend()
+plt.grid()
+plt.show()
