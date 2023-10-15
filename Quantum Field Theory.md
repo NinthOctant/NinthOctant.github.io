@@ -26,8 +26,9 @@
  $\Lambda^0_0\leq-1$的变换称为反时向(antichronous)Lorentz变换
 * 在数学上，对称性由群论描述。对称变换的集合称为群(group)，群元素具有乘法，元素的乘积就是两次对称变换相机作用，满足封闭性、结合律、存在恒元 $e$，存在逆元 $g^{-1}$四个条件
 * 满足交换律的群称为Abel群，否在称为非Abel群
-* 满足 $O^{T}O=OO^{T}=1$的实方阵称为实正交矩阵(real orthogonal matrix)，所有N阶实正交矩阵构成正交群 $O(N)$。由 $\rm det(O)=1$的实正交矩阵 $O$构成的群称为特殊正交群$SO(N)$。且显然有 $SO(N)\textless O(N)$。非Abel群 $SO(3)$描述三维空间中的所有旋转变换，称为空间旋转群。Abel群 $SO(2)$描述二维平面上的所有旋转变换。因而 $SO(2)\textless SO(3)$
-
+* 满足 $O^{T}O=OO^{T}=1$的实方阵称为实正交矩阵(real orthogonal matrix)，所有N阶实正交矩阵构成正交群 $O(N)$。由 $\rm det(O)=1$的实正交矩阵 $O$构成的群称为特殊正交群 $SO(N)$。且显然有 $SO(N)\textless O(N)$。非Abel群 $SO(3)$描述三维空间中的所有旋转变换，称为空间旋转群。Abel群 $SO(2)$描述二维平面上的所有旋转变换。因而 $SO(2)\textless SO(3)$
+* 满足 $U^{\dagger}U=UU^{\dagger}=1$的实方阵称为幺正矩阵(unitary matrix)，其行列式满足 $|det(U)|=1$。由 $det(U)=1$的 $N$阶幺正矩阵 $U$构成的群称为特殊幺正群 $SU(N)$。显然有 $SU(N)\textless U(N)$
+* Lorentz群是一个连续群，参数变化的空间称为群空间。Lorentz群的群空间不连通，具有四个连通分支，恒元在固有保时向分支里。
 #### Lorentz矢量
 #### Lorentz张量
 #### 作用量原理
