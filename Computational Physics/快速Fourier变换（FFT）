@@ -1,0 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#根据题意给定光栅参数
+h=1.0
+p=2.0
+w=1.5
+
+x=np.linspace(-p/2,p/2,1024,endpoint=False)
+
+epsilon_r=np.where(abs(x)<=w/2,5,1)#使用numpy库中的where()函数对介电常数进行分段取值，满足条件取5，否则取1
+
+a=np.fft.fftshift(np.fft.fft(epsilon_r)/p)
+
+#定义函数
+def f(i):
+    return (1/p)*np.trapz(epsilon_r*np.exp(-1j*2*np.pi*i*x/p),x)
+
+#计算解析解的Fourier系数
+coefficients=np.array([f(i) for i in range(len(a))])
+
+plt.figure(figsize=(12, 6))
+plt.plot(np.abs(a), label='FFT Result', color='blue')
+plt.plot(np.abs(coefficients), label='Analytical Solution', linestyle='--',
+color='red')
+plt.title('FFT vs. Analytical Fourier Coefficients')
+plt.xlabel('Coefficient Index')
+plt.ylabel('Magnitude')
+plt.legend()
+plt.grid()
+plt.show()
