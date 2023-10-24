@@ -1,0 +1,110 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.integrate
+from scipy.integrate import quad
+
+N=1000
+#梯形法
+def trapezoidal(f,a,b,n):                                #a,b为区间端点，n为分段个数，n取值越大，计算结果越精确
+    iteration=[]
+    value=[]
+    error_set=[]
+    l=(b-a)/n                                            #l为子区间长度
+    sum=0
+    for i in range(0,n):
+        sum=sum+(f(a+i*l)+f(a+(i+1)*l))*l/2
+        quad_result=scipy.integrate.quad(f, a, b)  # 获取积分估计值，忽略绝对误差
+        error = quad_result[0]-sum #scipy.integrate()函数默认返回元组，取出元组索引为0的值，为实际积分值
+        error_set.append(error)
+        iteration.append(i)
+        value.append(sum)
+
+    error_data = []
+    for i in range(len(iteration)):
+        if i%100==0:
+            error_data.append([iteration[i], error_set[i]])
+    print("Iteration vs. Error:")
+    for data in error_data:
+        print(f"Iteration: {data[0]}, Error: {data[1]}")
+
+    plt.plot(iteration,error_set,color='red')
+    plt.xlabel('Iteration Times')
+    plt.ylabel('Error')
+    plt.title('Trapezoidal Method')
+    plt.show()
+    return sum
+
+fun=lambda x:x**3
+res1=trapezoidal(fun,0,1,N)
+print('由梯形法所得的积分结果为：',res1)
+
+
+
+#Simpson方法
+def Simpson(f,a,b,n):
+    l=(b-a)/n
+    sum=f(a)*0.5+f(b)*0.5
+    for i in range(1,n):
+        sum=sum+f(a+i*l)
+
+    sumid=0
+    iteration = []
+    value = []
+    error_set = []
+    for i in range(1,n+1):
+        sumid=sumid+f(a+(i-0.5)*l)
+        quad_result = scipy.integrate.quad(f, a, b)  # 获取积分估计值，忽略绝对误差
+        error = quad_result[0] - ((sum+2*sumid)*l/3.0)
+        error_set.append(error)
+        iteration.append(i)
+        value.append(sum)
+
+    error_data = []
+    for i in range(len(iteration)):
+        if i%100==0:
+            error_data.append([iteration[i], error_set[i]])
+
+    for data in error_data:
+        print(f"Iteration: {data[0]}, Error: {data[1]}")
+
+    plt.plot(iteration, error_set, color='green')
+    plt.xlabel('Iteration Times')
+    plt.ylabel('Error')
+    plt.title('Simpson Method')
+    plt.show()
+    return (sum+2*sumid)*l/3.0
+
+res2=Simpson(fun,0,1,N)
+print('由Simpson法所得的积分结果为：',res2)
+
+#Gauss积分法
+def gauss(f,a,b,n):
+    sum=0
+    iteration = []
+    value = []
+    error_set = []
+    x,w=np.polynomial.legendre.leggauss(n) # 获取Legendre-Gauss积分点和权重
+    for i in range(n):
+        x_i=0.5*(b-a)*x[i]+0.5*(b+a) #将标准区间 [-1, 1] 上的积分节点 x[i] 映射到实际积分区间 [a, b] 上
+        sum += w[i] * f(x_i)
+        sum *= 0.5 * (b - a)
+        quad_result = scipy.integrate.quad(f, a, b)  # 获取积分估计值，忽略绝对误差
+        error = quad_result[0]-sum
+        error_set.append(error)
+        iteration.append(i)
+        value.append(sum)
+    error_data = []
+    for i in range(len(iteration)):
+        error_data.append([iteration[i], error_set[i]])
+    print("Iteration vs. Error:")
+    for data in error_data:
+        print(f"Iteration: {data[0]}, Error: {data[1]}")
+
+    plt.plot(iteration, error_set, color='orange')
+    plt.xlabel('Iteration Times')
+    plt.ylabel('Error')
+    plt.title('Gauss-Legendre Method')
+    plt.show()
+
+res3=gauss(fun,0,1,5)
+print('由Gauss法所得的积分结果为：',res3)
