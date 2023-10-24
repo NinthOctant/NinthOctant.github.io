@@ -1,45 +1,110 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.interpolate import lagrange, interp1d, BarycentricInterpolator,CubicSpline
 
-# 定义函数 f(x)
-def f(x):
-    return np.tan(np.cos((np.sqrt(3) + np.sin(2 * x)) / (3 + 4 * x**2)))
-# 选择插值节点
-n_values = [3, 5, 7, 9, 11]
-x_range = np.linspace(-5, 5, 1000) # 用于绘制插值函数的范围
-for n in n_values:
-    x_nodes = np.linspace(-5, 5, n)
-    y_nodes = f(x_nodes)
+# 定义原函数
+def original_function(x):
+    return x**3
 
 # 多项式插值
-poly_interp = lagrange(x_nodes, y_nodes)
-y_poly = poly_interp(x_range)
+def polynomial_interpolation(x, x_nodes, y_nodes):
+    n = len(x_nodes)
+    result = 0
+    for i in range(n):
+        term = y_nodes[i]
+        for j in range(n):
+            if i != j:
+                term *= (x - x_nodes[j]) / (x_nodes[i] - x_nodes[j])
+        result += term
+    return result
 
-# 牛顿插值 (使用线性插值)
-newton_interp = interp1d(x_nodes, y_nodes, kind='linear') # 使用牛顿插值
-y_newton = newton_interp(x_range)
+# 牛顿插值
+def newton_interpolation(x, x_nodes, y_nodes):
+    n = len(x_nodes)
+    a = y_nodes.copy()
+    for j in range(1, n):
+        for i in range(n - 1, j - 1, -1):
+            a[i] = (a[i] - a[i - 1]) / (x_nodes[i] - x_nodes[i - j])
+    result = a[n - 1]
+    for i in range(n - 2, -1, -1):
+        result = a[i] + (x - x_nodes[i]) * result
+    return result
 
 # 内维尔插值
-barycentric_interp = BarycentricInterpolator(x_nodes, y_nodes)
-y_barycentric = barycentric_interp(x_range)
+def neville_interpolation(x, x_nodes, y_nodes):
+    n = len(x_nodes)
+    P = np.zeros((n, n))
+    for i in range(n):
+        P[i, 0] = y_nodes[i]
+    for j in range(1, n):
+        for i in range(n - j):
+            P[i, j] = ((x - x_nodes[i + j]) * P[i, j - 1] - (x - x_nodes[i]) * P[i + 1, j - 1]) / (x_nodes[i] - x_nodes[i + j])
+    return P[0, n - 1]
 
-# 三次样条插值
-spline_interp = CubicSpline(x_nodes, y_nodes)
-y_spline = spline_interp(x_range)
+# 三次样条法插值
+def cubic_spline_interpolation(x, x_nodes, y_nodes):
+    n = len(x_nodes)
+    h = np.diff(x_nodes)
+    alpha = np.zeros(n)
+    for i in range(1, n - 1):
+        alpha[i] = 3 / h[i] * (y_nodes[i + 1] - y_nodes[i]) - 3 / h[i - 1] * (y_nodes[i] - y_nodes[i - 1])
+    l, mu, z = np.zeros(n), np.zeros(n - 1), np.zeros(n)
+    l[0] = 1
+    mu[0] = 0
+    z[0] = 0
+    for i in range(1, n - 1):
+        l[i] = 2 * (x_nodes[i + 1] - x_nodes[i - 1]) - h[i - 1] * mu[i - 1]
+        mu[i] = h[i] / l[i]
+        z[i] = (alpha[i] - h[i - 1] * z[i - 1]) / l[i]
+    l[n - 1] = 1
+    z[n - 1] = 0
+    c, b, d = np.zeros(n), np.zeros(n), np.zeros(n)
+    for j in range(n - 2, -1, -1):
+        c[j] = z[j] - mu[j] * c[j + 1]
+        b[j] = (y_nodes[j + 1] - y_nodes[j]) / h[j] - h[j] * (c[j + 1] + 2 * c[j]) / 3
+        d[j] = (c[j + 1] - c[j]) / (3 * h[j])
+    i = np.searchsorted(x_nodes, x) - 1
+    dx = x - x_nodes[i]
+    result = y_nodes[i] + b[i] * dx + c[i] * dx ** 2 + d[i] * dx ** 3
+    return result
 
-# 绘制原函数、插值函数和插值节点的对比
-plt.figure(figsize=(10, 6))
-plt.plot(x_range, f(x_range), label='Original Function', color='black')
-plt.plot(x_range, y_poly, label='Polynomial Interpolation', linestyle='--',
-color='red')
-plt.plot(x_range, y_newton, label='Newton Interpolation', linestyle='--',
-color='green')
-plt.plot(x_range, y_barycentric, label='Neville Interpolation',
-linestyle='--', color='blue')
-plt.plot(x_range, y_spline, label='Cubic Spline Interpolation', linestyle='--', color='purple')
-plt.scatter(x_nodes, y_nodes, color='red', label='Interpolation Nodes')
-plt.title(f'Interpolation Comparison (n={n})')
-plt.legend()
-plt.grid()
-plt.show()
+# 生成用于绘制的 x 值
+x_plot = np.linspace(-5, 5, 500)
+
+# 不同插值节点数量
+num_points_list = [3, 5, 7, 9, 11]
+
+for num_points in num_points_list:
+    # 生成插值节点
+    x_nodes = np.linspace(-5, 5, num_points)
+    y_nodes = original_function(x_nodes)
+
+    # 多项式插值
+    y_poly = [polynomial_interpolation(x, x_nodes, y_nodes) for x in x_plot]
+
+    # 牛顿插值
+    y_newton = [newton_interpolation(x, x_nodes, y_nodes) for x in x_plot]
+
+    # 内维尔插值
+    y_neville = [neville_interpolation(x, x_nodes, y_nodes) for x in x_plot]
+
+    # 三次样条法插值
+    y_cubic_spline = [cubic_spline_interpolation(x, x_nodes, y_nodes) for x in x_plot]
+
+    # 绘制原函数
+    plt.plot(x_plot, original_function(x_plot), label='Original Function', linestyle='dashed')
+
+    # 绘制插值结果
+    plt.plot(x_plot, y_poly, label=f'Polynomial Interpolation ({num_points} nodes)', linestyle='-.')
+    plt.plot(x_plot, y_newton, label=f'Newton Interpolation ({num_points} nodes)', linestyle='--')
+    plt.plot(x_plot, y_neville, label=f'Neville Interpolation ({num_points} nodes)', linestyle=':')
+    plt.plot(x_plot, y_cubic_spline, label=f'Cubic Spline Interpolation ({num_points} nodes)')
+
+    # 绘制插值节点
+    plt.scatter(x_nodes, y_nodes, color='red', label=f'Interpolation Nodes ({num_points} nodes)')
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
+    plt.grid()
+    plt.title(f'Interpolation Comparison ({num_points} nodes)')
+    plt.show()
